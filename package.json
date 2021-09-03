@@ -1,20 +1,21 @@
 {
-  "name": "@otvet/GeekbrainsLvl2",
+  "name": "Node.jsLesson1",
   "version": "1.0.0",
-  "description": "Lessons",
+  "description": "",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./public/server.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HaseProgram/GeekbrainsLvl2.git"
+    "url": "git+https://github.com/RustamSaifutdinov1/Node.jsLesson1.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/HaseProgram/GeekbrainsLvl2/issues"
+    "url": "https://github.com/RustamSaifutdinov1/Node.jsLesson1/issues"
   },
-  "homepage": "https://github.com/HaseProgram/GeekbrainsLvl2#readme"
+  "homepage": "https://github.com/RustamSaifutdinov1/Node.jsLesson1#readme"
 }
