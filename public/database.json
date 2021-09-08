@@ -1,0 +1,14 @@
+{
+  "data": [
+    {"name": "Good 1" , "price": 100},
+    {"name": "Good 2" , "price": 100},
+    {"name": "Good 3" , "price": 100},
+    {"name": "Good 4" , "price": 100},
+    {"name": "Good 5" , "price": 100},
+    {"name": "Good 6" , "price": 100},
+    {"name": "Good 7" , "price": 100},
+    {"name": "Good 8" , "price": 100},
+    {"name": "Good 9" , "price": 100},
+    {"name": "Good 10" , "price": 100}
+  ]
+}
