@@ -1,0 +1,9 @@
+.cart_list{
+    display: none;
+    background: #fff;
+    height: 200px;
+    width: 100px;
+}
+.cart_list.shown{
+    display: block;
+}
