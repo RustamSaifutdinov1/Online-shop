@@ -4,8 +4,19 @@ class AbstractList{
         this.items=[]
     }
     add(item){
-        this.items.push(item)
-        this.render()
+        const fundedItem=this.items.find((fitem,index,arr)=>{
+            return  fitem.name===item.name
+        })
+        const{items}=this
+        const addedPromise=new Promise(resolve => {
+            if(fundedItem){
+                fundedItem.counter++
+            }else{
+                this.items.push(item)
+            }
+            resolve()
+        })
+        addedPromise.then(()=>{this.render()})
     }
     remove(){
 
@@ -21,23 +32,43 @@ class AbstractList{
 class List extends AbstractList{
     items=[]
     _cartInstance=null
+    _pageCounter=1
     constructor(cartInstance) {
         super()
         this._cartInstance=cartInstance
+        this.initShowMoreBtn()
         let goodsPromise=this.fetchGoods()
         goodsPromise.then(()=>{
             this.render()
         })
     }
+    initShowMoreBtn(){
+        const btn=document.querySelector('.btnMore')
+        btn.addEventListener('click',()=>{
+            console.log("click")
+            this.fetchGoods()
+                .then(()=>{
+                    this.render()
+                })
+        })
+    }
+    hideShowMoreBtn(){
+        const btn=document.querySelector('.btnMore')
+        btn.remove()
+    }
     fetchGoods(){
-        const result=fetch('http://localhost:3000/database.json')
+        const result=fetch(`http://localhost:3000/database${this._pageCounter}.json`)
             .then(res=>{
                 return res.json()
             })
             .then(data=>{
-                this.items=data.data.map(cur=>{
+                this._pageCounter++
+                this.items.push(...data.data.map(cur=>{
                     return new Good(cur,this._cartInstance)
-                })
+                }))
+            })
+            .catch(e=>{
+                this.hideShowMoreBtn()
             })
         return result
     }
@@ -84,6 +115,7 @@ class Cart extends AbstractList{
 class Good{
     name=''
     price=0
+    counter=1
     _cartInstance=null
     constructor({name,price},cartInstance=null) {
         this.name=name
@@ -126,7 +158,7 @@ class CartGood extends Good{
         const PlaceToRender=document.querySelector('.cart_list')
         if(PlaceToRender){
             const block =document.createElement('div')
-            block.innerHTML=`${this.name}=${this.price}`
+            block.innerHTML=`${this.name}=${this.price} *${this.counter}`
             PlaceToRender.appendChild(block)
         }
     }
