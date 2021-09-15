@@ -18,8 +18,21 @@ class AbstractList{
         })
         addedPromise.then(()=>{this.render()})
     }
-    remove(){
-
+    remove(item){
+        const addedPromise=new Promise(resolve => {
+            if(item.counter>1){
+                item.counter--
+            }else{
+                for(let i=0; i<this.items.length; i++){
+                    if(item===this.items[i]){
+                        this.items.splice(i,1)
+                        break
+                    }
+                }
+            }
+            resolve()
+        })
+        addedPromise.then(()=>{this.render()})
     }
     render(){
         this.items.forEach(good=>{
@@ -117,7 +130,7 @@ class Good{
     price=0
     counter=1
     _cartInstance=null
-    constructor({name,price},cartInstance=null) {
+    constructor({name,price},cartInstance) {
         this.name=name
         this.price=price
         this._cartInstance=cartInstance
@@ -143,7 +156,7 @@ class Good{
       `
             PlaceToRender.appendChild(block)
             const BtnAdd=new Button('Добавить в корзину',()=>{
-                this._cartInstance.add(new CartGood(this))
+                this._cartInstance.add(new CartGood(this,this._cartInstance))
             })
             const BtnRem=document.createElement('button')
             block.querySelector('.btn_holder').appendChild(BtnAdd.getTemplate())
@@ -151,15 +164,30 @@ class Good{
     }
 }
 class CartGood extends Good{
-    constructor(props) {
+    sum=0
+    constructor(props,cartInstance) {
         super(props)
+        this._cartInstance=cartInstance
+        this.sum=parseInt(this.price)*this.counter
     }
     render() {
         const PlaceToRender=document.querySelector('.cart_list')
         if(PlaceToRender){
             const block =document.createElement('div')
-            block.innerHTML=`${this.name}=${this.price} *${this.counter}`
+            block.innerHTML=`${this.name}=${this.price} *${this.counter} `
             PlaceToRender.appendChild(block)
+            let addBtn=new Button('-',()=>{
+                this._cartInstance.remove(this)
+            })
+            let BtnRem=document.createElement('div')
+            block.appendChild(BtnRem)
+            BtnRem.appendChild(addBtn.getTemplate())
+            addBtn=new Button('+',()=>{
+                this._cartInstance.add(this)
+            })
+            BtnRem=document.createElement('div')
+            block.appendChild(BtnRem)
+            BtnRem.appendChild(addBtn.getTemplate())
         }
     }
 }
