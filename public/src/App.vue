@@ -1,20 +1,40 @@
 <template>
   <div>
-    <header></header>
-    <main>
-      <div class="goods-list"></div>
-      <button class="btnMore">Загрузить ещё</button>
-    </main>
+    <header  >
+
+    </header>
+    <div>
+      <h1 >Список Товаров</h1>
+      <div>
+        <Item
+          v-for="id in getItemsOnPage"
+          :key="id"
+          :id="id"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import Item from "./Item.vue";
+import {mapGetters} from 'vuex';
+
 export default {
-  name: "App",
+  components: {
+    Item,
+  },
   data(){
     return{
-
+      items:[]
     }
+  },
+  methods:{
+  },
+  computed:{
+    ...mapGetters('goods',[
+        'getItemsOnPage',
+    ])
   }
 }
 </script>
