@@ -1,17 +1,20 @@
 <template>
   <div>
-    {{currentItem.name}}
+    <div>{{currentItem.name}}</div>
+    <div>{{currentItem.price}}</div>
+    <Button @click="onBuyClick">Купить</Button>
   </div>
-  <div>
-    {{currentItem.price}}
-  </div>
-  <button @click="onBuyClick">Купить</button>
 </template>
 
 <script>
 import {mapGetters} from "vuex";
+import {mapActions} from "vuex";
+import Button from "./Button.vue";
 
 export default {
+  components:{
+    Button,
+  },
   props:{
     id:String,
   },
@@ -24,8 +27,11 @@ export default {
     }
   },
   methods:{
+    ...mapActions('goods',[
+        "addInCart"
+    ]),
     onBuyClick(){
-
+      this.addInCart(this.id)
     },
   }
 }

@@ -25,12 +25,17 @@ const actions={
     requestData(){
 
     },
-    add
+    addInCart({state,commit},id){
+        commit('addInCart',id)
+    }
 }
 
 const mutations={
     setData(state,newData){
         state.data=newData
+    },
+    addInCart(state, id) {
+        state.itemsInCart.push(id)
     }
 }
 

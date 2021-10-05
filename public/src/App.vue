@@ -1,7 +1,7 @@
 <template>
   <div>
-    <header  >
-
+    <header>
+      <Cart/>
     </header>
     <div>
       <h1 >Список Товаров</h1>
@@ -17,11 +17,13 @@
 </template>
 
 <script>
-import Item from "./Item.vue";
+import Item from "./components/Item.vue";
 import {mapGetters} from 'vuex';
+import Cart from "./components/Cart.vue";
 
 export default {
   components: {
+    Cart,
     Item,
   },
   data(){
@@ -33,7 +35,7 @@ export default {
   },
   computed:{
     ...mapGetters('goods',[
-        'getItemsOnPage',
+        'getItemsOnPage', 'getItemsInCart',
     ])
   }
 }
