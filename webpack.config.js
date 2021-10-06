@@ -13,10 +13,24 @@ module.exports = {
     },
     module: {
         rules:[
+           // {
+           //     test:/\.js$/,
+           //     use:[
+           //         {loader:'babel-loader'},
+           //     ]
+           // },
             {
-                test:/\.js$/,
+                test: /\.[s]?css$/,
                 use:[
-                    {loader:'babel-loader'},
+                    'style-loader',
+                    {
+                        loader:'css-loader',
+                        options: {
+                            modules: true,
+                            //localIdentName: '[local]_[hash:base64:8]'
+                        }
+                    },
+                    'sass-loader',
                 ]
             },
             {
@@ -25,19 +39,6 @@ module.exports = {
                     {loader:'vue-loader'},
                 ]
             },
-            {
-                test: /\.css$/,
-                use:[
-                    {loader:'vue-style-loader'},
-                    {
-                        loader:'css-loader',
-                        options: {
-                            modules: true,
-                            localIdentName: '[local]_[hash:base64:8]'
-                        }
-                    },
-                ]
-            }
         ]
     },
     plugins: [

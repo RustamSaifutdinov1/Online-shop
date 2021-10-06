@@ -1,18 +1,49 @@
 <template>
-  <div>
-    <button>Корзина</button>
-    <div>
-
+  <div :class="[$style.wrapper]">
+    <Button @mySuperEvent="onCartClick">Корзина</Button>
+    <div :class="[$style.list]" v-if="opened">
+      <div :class="[$style.empty]" v-if="!getItemsInCart.length">
+        Список пуст
+      </div>
+      <div  v-for="(id, index) in getItemsInCart" :key="id +  `${index}`">
+        {{ getData[id].name }} x {{ getData[id].price }} x {{getCountInCart[id]}}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {
+import Button from "./Button.vue";
+import { mapGetters } from 'vuex';
 
+export default {
+  components:{
+    Button,
+  },
+  data () {
+    return {
+      opened: false
+    }
+  },
+  methods:{
+    onCartClick(){
+      this.opened = !this.opened
+    }
+  },
+  computed: {
+    ...mapGetters('goods', [
+      'getData',
+      'getItemsInCart',
+      'getCountInCart',
+    ])
+  }
 }
 </script>
 
-<style module>
-
+<style module lang="scss">
+.wrapper {}
+.list {
+  background: #fff;
+}
+.empty {}
 </style>

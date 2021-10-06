@@ -1,14 +1,7 @@
 {
-  "data": [
-    {"id":1 , "name": "Good 1" , "price": 100},
-    {"id":2 , "name": "Good 2" , "price": 100},
-    {"id":3 , "name": "Good 3" , "price": 100},
-    {"id":4 , "name": "Good 4" , "price": 100},
-    {"id":5 , "name": "Good 5" , "price": 100},
-    {"id":6 , "name": "Good 6" , "price": 100},
-    {"id":7 , "name": "Good 7" , "price": 100},
-    {"id":8 , "name": "Good 8" , "price": 100},
-    {"id":9 , "name": "Good 9" , "price": 100},
-    {"id":10 , "name": "Good 10" , "price": 100}
-  ]
+  "1": { "id": 1, "name": "Shirt1", "price": 150 },
+  "2": { "id": 2, "name": "Shirt2", "price": 250 },
+  "3": { "id": 3, "name": "Shirt3", "price": 350 },
+  "4": { "id": 4, "name": "Shirt4", "price": 450 },
+  "5": { "id": 5, "name": "Shirt5", "price": 550 }
 }

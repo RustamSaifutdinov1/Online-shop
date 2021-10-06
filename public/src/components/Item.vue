@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <div>{{currentItem.name}}</div>
-    <div>{{currentItem.price}}</div>
-    <Button @click="onBuyClick">Купить</Button>
+  <div :class="[$style.wrapper]">
+    <div :class="[$style.name]">{{ currentItem.name }}</div>
+    <div :class="[$style.price]">{{ currentItem.price }}</div>
+    <Button @mySuperEvent="onBuyClick">Купить</Button>
   </div>
 </template>
 
@@ -37,6 +37,16 @@ export default {
 }
 </script>
 
-<style module>
+<style module lang="scss">
+.wrapper {
+  background: #eeeeee;
+  margin: 10px;
+  min-width: 200px;
+  padding: 20px;
+}
 
+.name, .price {
+  color: black;
+  padding: 4px;
+}
 </style>
