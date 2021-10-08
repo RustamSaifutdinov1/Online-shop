@@ -15,7 +15,9 @@
             :id="id"
         />
       </div>
+      <Button @mySuperEvent="fetchMore()">Подгрузить ещё товары</Button>
     </div>
+    <Form />
   </div>
 </template>
 
@@ -23,21 +25,32 @@
 import Item from "./components/Item.vue";
 import {mapGetters,mapActions} from 'vuex';
 import Cart from "./components/Cart.vue";
+import Button from "./components/Button.vue";
+import Form from "./components/Form.vue";
 
 export default {
   components: {
     Cart,
     Item,
+    Button,
+    Form,
   },
   data(){
     return{
-      items:[]
+      items:[],
+      page:1
     }
   },
   methods:{
     ...mapActions('goods', [
       'requestData',
-    ])
+    ]),
+    fetchMore(){
+      this.requestData(this.page)
+        .then(()=>{
+          this.page++
+        })
+    }
   },
   computed:{
     ...mapGetters('goods',[
@@ -45,7 +58,7 @@ export default {
     ])
   },
   mounted () {
-    this.requestData(1)
+    this.fetchMore()
   }
 }
 </script>

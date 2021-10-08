@@ -14,12 +14,14 @@ const getters={
 }
 
 const actions={
-    requestData ({ commit }, page) {
+    requestData ({ commit }, page=1) {
         if (!page) {
             return
         }
 
-        fetch(`/database${page}.json`)
+        return fetch(`/itemslist/${page}`,{
+            method: 'GET'
+        })
             .then(res => {
                 return res.json()
             })
@@ -30,13 +32,25 @@ const actions={
     },
     addInCart({state,commit},id){
         commit('addInCart',id)
+    },
+    addItem({state,commit},data){
+        fetch('/itemslist',{
+            method:'POST',
+            body:JSON.stringify(data),
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+            .then(res=>{
+                console.log(res)
+            })
     }
 }
 
 const mutations={
     setData(state,newData){
-        state.data=newData
-        state.itemsOnPage = Object.keys(newData)
+        state.data={...state.data,...newData}
+        state.itemsOnPage.push(...Object.keys(newData))
     },
     addInCart(state, id) {
         if(state.itemsInCart.indexOf(id)==-1) {
