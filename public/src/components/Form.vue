@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="[$style.form]">
     <input type="text" placeholder="Название товара" v-model="name">
     <input type="text" placeholder="Цена товара" v-model="price">
     <Button @mySuperEvent="send">Создать товар</Button>
@@ -33,6 +33,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style module lang="scss">
+.form{
+  margin-top: 20px;
+}
 </style>

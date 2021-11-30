@@ -1,7 +1,1 @@
-{
-  "1": { "id": 6, "name": "Shirt6", "price": 150 },
-  "2": { "id": 7, "name": "Shirt7", "price": 250 },
-  "3": { "id": 8, "name": "Shirt8", "price": 350 },
-  "4": { "id": 9, "name": "Shirt9", "price": 450 },
-  "5": { "id": 10, "name": "Shirt10", "price": 550 }
-}
+{"1":{"id":6,"name":"Shirt6","price":150},"2":{"id":7,"name":"Shirt7","price":250},"3":{"id":8,"name":"Shirt8","price":350},"4":{"id":9,"name":"Shirt9","price":450},"5":{"id":10,"name":"Shirt10","price":550}}

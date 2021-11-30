@@ -24,7 +24,7 @@ const app = express()
 const bodyParser=require('body-parser')
 
 app.use(express.static('./public'))
-app.use(bodyParser)
+app.use(bodyParser.json())
 app.listen(3000,()=>{
     console.log('server started')
 })
@@ -44,9 +44,11 @@ app.post('/itemslist',(req,res)=>{
         const newItem = req.body
         newItem.id=newID
         list[newItem.id]=newItem
-        fs.writeFile('./public/database2.json',JSON.stringify(list),(err)=>{
-            console.log(err)
-            res.list
+        fs.writeFile('./public/database2.json', JSON.stringify(list), (err) => {
+            if (err) {
+                console.log(err)
+            }
+            res.send(list)
         })
 
     })
