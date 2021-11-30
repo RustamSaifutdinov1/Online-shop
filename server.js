@@ -22,11 +22,12 @@ const express = require('express')
 const fs = require('fs');
 const app = express()
 const bodyParser=require('body-parser')
+const port = process.env.PORT || 3000
 
 app.use(express.static('./public'))
 app.use(bodyParser.json())
-app.listen(3000,()=>{
-    console.log('server started')
+app.listen(port,()=>{
+    console.log('server started'+port)
 })
 
 app.get('/itemslist/:page',(req,res)=>{
